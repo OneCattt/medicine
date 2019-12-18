@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dsl.first.mapper.AdminMapper">
+
+    <select id="selectAdmin" parameterType="com.dsl.first.model.Admin"  resultType="com.dsl.first.model.Admin">
+        SELECT
+            a.totalcode,
+            a.exp,
+            a.userlimit
+        FROM
+            admin a
+        WHERE
+             a.username=#{username}
+            and a.password=#{password}
+	 </select>
+    <update id="updateAdmin" parameterType="com.dsl.first.model.Admin">
+        update admin
+        <set>
+            <if test="totalcode != null">
+                totalcode=#{totalcode}
+            </if>
+            <if test="exp != null">
+                exp=#{exp}
+            </if>
+            <if test="userlimit != null">
+                userlimit=#{userlimit}
+            </if>
+        </set>
+        WHERE
+        a.username=#{username}
+        and a.password=#{password}
+    </update>
+
+</mapper>
